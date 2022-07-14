@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Movie Rental App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/LoginForm.css")*@
+
+
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    @{ Html.RenderPartial("_NavBar"); }
+
+    @*@Html.Partial("_NavBar")*@
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+   @{ Html.RenderPartial("_Footer");}
+    @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/bootstrap1")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+
+</body>
+</html>
+
+

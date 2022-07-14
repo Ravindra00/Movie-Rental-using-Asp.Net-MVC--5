@@ -1,0 +1,41 @@
+﻿@model List<MovieRental.Models.GetMovies>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="center">List of Customers and Movies Rented</h2>
+<hr/>
+@Html.ActionLink("Click to Generate Report", "Report", "", new {@class = " btn btn-primary"})
+<br />
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>S.N</th>
+                <th>Customer Name</th>
+                <th>Movie Rented</th>
+                <th>Rented Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int ind = 0; } 
+            @foreach (var m in Model)
+            {
+                <tr>
+                <td> @(++ind)</td>
+                <td>@m.CustomerName</td>
+                <td>@m.MovieName</td>
+                <td>@m.RentedDate</td>
+                <td>@m.TotalDays</td>
+                <td>@m.Rate</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+                
+
+
+
+
+

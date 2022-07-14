@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MovieRental.Models.Movie>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Available Movies </h2>
+<hr/>
+<br/>
+    
+@if (!Model.Any())
+{
+    <p> No movies added yet!</p>
+
+}
+else
+{
+    <table id="customers" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>S.N</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Released Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{int id = 0; }
+            @foreach (var m in Model)
+            {
+                <tr>
+
+                    <td>@(++id)</td>
+                    <td>@m.Name</td>
+                    <td>@m.Genre.Name</td>
+                    <td>@m.ReleasedDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br/>
+
+

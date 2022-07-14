@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/LoginForm.css")
+    <title>LoginForm</title>
+</head>
+<body>
+    <div style="position:center">
+        <p style="text-align:center"> Welcome to Admin page of Movie Rental !! </p>
+    </div>
+   
+
+    <div class="container">
+        <div class="box"></div>
+        <div class="container-forms">
+            <div class="container-info">
+                <div class="info-item">
+                    <div class="form-table">
+                        <div class="table-cell">
+                            <p>
+                                Have an account?
+                            </p>
+                            <div class="btn">
+                                Log in
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="form-table">
+                        <div class="table-cell">
+                            <p>
+                                Don't have an account?
+                            </p>
+                            <div class="btn">
+                                Sign up
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-form">
+                <div class="form-item log-in">
+                    <div class="form-table">
+                        <div class="table-cell">
+                            <p style="text-align:center"> Please Login To Continue</p>
+                            <input name="Username" placeholder="Username" type="text" />
+                            <input name="Password" placeholder="Password" type="Password" />
+                            <div class="btn">
+                                Log in
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item sign-up">
+                    <div class="form-table">
+                        <div class="table-cell">
+                            <input name="email" placeholder="Email" type="text" />
+                            <input name="fullName" placeholder="Full Name" type="text" />
+                            <input name="Username" placeholder="Username" type="text" />
+                            <input name="Password" placeholder="Password" type="Password" />
+                            <div class="btn">
+                                Sign up
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/lib")
+
+    <script>
+        $(".info-item .btn").click(function () {
+            $(".container").toggleClass("log-in");
+        });
+            //$(".container-form .btn").click(function () {
+            //    $(".container").addClass("active");
+            //});
+    </script>
+</body>
+</html>

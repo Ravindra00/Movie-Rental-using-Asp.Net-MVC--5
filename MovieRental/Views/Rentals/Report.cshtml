@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MovieRental.Models.GetMovies>
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center"> Movies Rented By Customers </h2>
+
+@*<form method="post">
+        @Html.TextBox("name")
+
+        <input type="submit" value="Generate Report" class="btn btn-warning" />
+    </form>*@
+@using (Html.BeginForm("Report", "Rentals"))
+{
+    @*@Html.TextBox("name")*@
+    
+   
+    @Html.DropDownList("id", new SelectList(ViewBag.Movies, "Id", "Name", "Select Movie"),new {@class ="form-control" })
+    @*@Html.DropDownListFor("name", new SelectList(ViewBag.Movies, "Id", "Name"), "Select Customer", new { @class = "form-control" })*@
+
+    <input type="submit" value="Generate Report" class="btn btn-warning" />
+}
+@if (Model == null)
+{
+    <p>Select movies to get details</p>
+}
+else
+{
+
+    <table>
+        <thead>
+            <tr>
+                Total Customers:
+            </tr>
+            <tr>
+                Rented Date
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+            <tr>
+                <td>@m.name </td>
+                <td>@m.RentedDate</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+   
+    
+}
+
+
+
+

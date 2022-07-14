@@ -1,0 +1,54 @@
+﻿@model MovieRental.ViewModels.CustomerFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> New Customer</h2>
+@Html.ActionLink("Back", "Index", "", new { @class = "btn btn-primary" })
+@using (@Html.BeginForm("Save", "Customers", FormMethod.Post))
+{
+    @Html.ValidationSummary(true,"Fields Mark with * are compulsary",new {@class ="text-danger" })
+    @*@Html.ValidationSummary()*@
+@*  <div class="form-group">
+    @Html.TextBoxFor(m => m.Id, new { @readonly = "readonly" })
+</div>*@
+    @Html.HiddenFor(m=>m.Id)
+<div class="form-group">
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Name)
+</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div class="form-group">
+        <label>Phone</label>
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+    <div class="form-group">
+        <label>Date of Birth</label>
+        @Html.TextBoxFor(m => m.Birthdate, "{0:d MMM YYYY}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MembershipTypeId)
+        @Html.DropDownListFor(m => m.MembershipTypeId, new SelectList(ViewBag.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MembershipTypeId)
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter) Subscribed To NewsLetter
+        </label>
+    </div>   
+    @Html.AntiForgeryToken()
+    <br/>
+    <button type="submit" class="btn btn-success">Save</button>
+}
+@section scripts
+  {
+    @Scripts.Render("~/bundles/jqueryval")
+}

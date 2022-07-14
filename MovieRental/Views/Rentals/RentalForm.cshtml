@@ -1,0 +1,44 @@
+﻿@model MovieRental.ViewModels.RentalFormViewModel
+@{
+    ViewBag.Title = "RentalForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Rental Form</h2>
+<hr/>
+<div class="center">
+    @Html.ActionLink("Back to Rentals", "Index", "", new { @class = "btn btn-primary" })
+    @using (@Html.BeginForm("Save", "Rentals"))
+    {@Html.ValidationSummary(true, "Please Fill the following boxes")
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerId)
+        @Html.DropDownListFor(m => m.CustomerId, new SelectList(ViewBag.Customers, "Id", "Name"), "Select Customer", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MovieId)
+        @Html.DropDownListFor(m => m.MovieId, new SelectList(ViewBag.Movies, "Id", "Name"), "Select Movie", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MovieId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RentedDate)
+        @Html.TextBoxFor(m=>m.RentedDate, new {@class = "form-control" })
+        @Html.ValidationMessageFor(m => m.RentedDate)
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.ReturnedDate)
+        @Html.TextBoxFor(m=>m.ReturnedDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ReturnedDate)
+    </div>*@
+    @*@Html.HiddenFor(m=>m.RentalId)
+    @Html.ValidationMessageFor(m=>m.RentalId)*@
+    <br />
+    <input type="submit" value="Save" class="btn btn-primary" />
+    @Html.AntiForgeryToken()
+}
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

@@ -1,0 +1,51 @@
+﻿    @model IEnumerable<MovieRental.ViewModels.MovieFormViewModel>
+        @{ 
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-app="myApp" ng-controller="Customer">
+<h2>Movies Details</h2>
+@Html.ActionLink("Add New Movie", "Add", "", new { @class = "btn btn-primary" })
+
+@if (!Model.Any())
+{
+    <p> No movies added yet!</p>
+
+}
+else
+{
+    <table id ="customers" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>S.N</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Released Date</th>
+                <th>Rate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int id = 0; }
+                @foreach (var m in Model)
+                {
+                    <tr>
+
+                        <td>@(++id)</td>
+                        <td>@m.Name</td>
+                        <td>@m.Genre.Name</td>
+                        <td>@m.ReleasedDate</td>
+                        <td>@m.Rate</td>
+                        <td>
+                           @Html.ActionLink("Edit", "Edit", new { id = m.Id }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Delete", "Delete", new { id = m.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+                }
+    </div>
+
+
+
